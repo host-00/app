@@ -1,37 +1,445 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Cadastro</title>
-    <link rel="stylesheet" href="css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ordem de Serviço</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f2f2f2;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+
+.container h2 {
+    text-align: center;
+    margin-bottom: 20px; /* Add spacing below the title */
+}
+
+form div {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px; /* Add spacing below labels */
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"],
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease; /* Add smooth transition */
+}
+
+input[type="submit"]:hover,
+button:hover {
+    background-color: #45a049;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table,
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    text-align: left;
+    background-color: #f2f2f2;
+}
+
+tfoot {
+    font-weight: bold;
+}
+
+td:last-child {
+    text-align: center;
+}
+
+#corpo-tabela tr:hover {
+    background-color: #f2f2f2;
+}
+
+#resumo {
+    margin-top: 20px;
+}
+
+#texto_formatado {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px; /* Add padding for better readability */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    margin-top: 10px; /* Add spacing above buttons */
+}
+
+button:active {
+    transform: translateY(1px); /* Add slight click effect */
+}
+
+#form-produto {
+    margin-bottom: 40px;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <img src="img/logo.png" alt="Logo da Empresa" class="logo">
-            <div class="company-info">
-                <h2>Luiz Calhas</h2>
-                <p>Rua Manoel Francelino de Sousa, Padre Ibiapina, Princesa Isabel - PB</p>
-                <p>(83) 9635-1153 / (83) 99635-1153 / contato.luizcalhas@gmail.com</p>
-                <p>CNPJ: 49117654000199</p>
-            </div>
-        </div>
 
-        <h1>Bem-vindo ao Sistema de Cadastro</h1>
-        <ul>
-            <li><a href="cadastro_servicos.html">Fazer Orçamento</a></li>
-            <li><a href="cadastro_clientes.html">Cadastrar Clientes</a></li>
-            <li><a href="cadastro_produtos.html">Cadastrar Produtos</a></li>
-            <li><a href="cadastro_servicos.html">Cadastrar Serviços</a></li>
-            <li><a href="orcamentos_realizados.html">Orçamentos Realizados</a></li>
-            <li><a href="orcamentos_finalizados.html">Orçamentos Finalizados</a></li>
-            <li><a href="taxas.html">Taxas</a></li>
-            <li><a href="balanco_caixa.html">Balanço de Caixa</a></li>
-            <li><a href="relatorio_mensal.html">Relatório Mensal</a></li>
-            <li><a href="relatorio_anual.html">Relatório Anual</a></li>
-            <li><a href="nfc-e.html">NFC-e</a></li>
-        </ul>
+<div class="container">
+    <h2>Ordem de Serviço</h2>
+    <form id="form">
+        <div>
+            <label for="nome_cliente">Nome do Cliente:</label>
+            <input type="text" id="nome_cliente" name="nome_cliente" required>
+        </div>
+        <div>
+            <label for="endereco_cliente">Endereço do Cliente:</label>
+            <input type="text" id="endereco_cliente" name="endereco_cliente" required>
+        </div>
+        <div>
+            <label for="telefone_cliente">Telefone do Cliente:</label>
+            <input type="text" id="telefone_cliente" name="telefone_cliente" required>
+        </div>
+        <div>
+            <label for="email_cliente">E-mail do Cliente:</label>
+            <input type="email" id="email_cliente" name="email_cliente">
+        </div>
+        <div>
+            <label for="produto">Produto:</label>
+            <select id="produto" name="produto">
+                <option value="">Selecione um produto...</option>
+<option value="PARAF. FLANG. 4,5X4,5/BUCHA 6 Mlinear  - 1,50">PARAF. FLANG. 4,5X4,5/BUCHA 6 Mlinear - R$ 1,50</option>
+<option value="PARAF. P. AGULHA  FLAN. 10Unid - 1,50">PARAF. P. AGULHA  FLAN. 10Unid - R$ 1,50</option>
+<option value="SELANTE PU40 WURTH/WMAX 387g - 20,00">SELANTE PU40 WURTH/WMAX 387g - R$ 20,00</option>
+<option value="SELANTE PU40 UNIPRO 387g - 20,00">SELANTE PU40 UNIPRO 387g - R$ 20,00</option>
+<option value="SELANTE PU40 UNIPRO 800g - 55,00">SELANTE PU40 UNIPRO 800g - R$ 55,00</option>
+<option value="SELANTE PU40FIX TEKBOND 387g - 30,00">SELANTE PU40FIX TEKBOND 387g - R$ 30,00</option>
+<option value="CALHA DE BEIRAL C030 #26 - 36,78">CALHA DE BEIRAL C030 #26 - R$ 36,78</option>
+<option value="CALHA DE BEIRAL C040 #26 - 43,62">CALHA DE BEIRAL C040 #26 - R$ 43,62</option>
+<option value="CALHA DE BEIRAL C030 #28 - 34,68">CALHA DE BEIRAL C030 #28 - R$ 34,68</option>
+<option value="CALHA DE BEIRAL C040 #28 - 40,81">CALHA DE BEIRAL C040 #28 - R$ 40,81</option>
+<option value="CALHA PLATIBANDA C050 #26 - 50,29">CALHA PLATIBANDA C050 #26 - R$ 50,29</option>
+<option value="CALHA PLATIBANDA C050 #28 - 46,78">CALHA PLATIBANDA C050 #28 - R$ 46,78</option>
+<option value="CALHA PLATIBANDA C060 #26 - 56,95">CALHA PLATIBANDA C060 #26 - R$ 56,95</option>
+<option value="CALHA PLATIBANDA C060 #28 - 52,74">CALHA PLATIBANDA C060 #28 - R$ 52,74</option>
+<option value="CALHA PLATIBANDA C070 #26 - 63,79">CALHA PLATIBANDA C070 #26 - R$ 63,79</option>
+<option value="CALHA PLATIBANDA C070 #28 - 58,88">CALHA PLATIBANDA C070 #28 - R$ 58,88</option>
+<option value="CALHA PLATIBANDA C080 #26 - 70,46">CALHA PLATIBANDA C080 #26 - R$ 70,46</option>
+<option value="CALHA PLATIBANDA C080 #28 - 64,84">CALHA PLATIBANDA C080 #28 - R$ 64,84</option>
+<option value="CALHA PLATIBANDA C100 #26 - 83,96">CALHA PLATIBANDA C100 #26 - R$ 83,96</option>
+<option value="CALHA PLATIBANDA C100 #28 - 76,95">CALHA PLATIBANDA C100 #28 - R$ 76,95</option>
+<option value="CALHA PLATIBANDA C120 #26 - 97,47">CALHA PLATIBANDA C120 #26 - R$ 97,47</option>
+<option value="CALHA PLATIBANDA C120 #28 - 89,05">CALHA PLATIBANDA C120 #28 - R$ 89,05</option>
+<option value="CALHA COCHO C030 #26 - 36,78">CALHA COCHO C030 #26 - R$ 36,78</option>
+<option value="CALHA COCHO C030 #28 - 34,68">CALHA COCHO C030 #28 - R$ 34,68</option>
+<option value="CALHA COCHO C040 #26 - 43,62">CALHA COCHO C040 #26 - R$ 43,62</option>
+<option value="CALHA COCHO C040 #28 - 40,81">CALHA COCHO C040 #28 - R$ 40,81</option>
+<option value="CALHA COCHO C050 #26 - 50,29">CALHA COCHO C050 #26 - R$ 50,29</option>
+<option value="CALHA COCHO C050 #28 - 46,78">CALHA COCHO C050 #28 - R$ 46,78</option>
+<option value="CALHA COCHO C060 #26 - 56,95">CALHA COCHO C060 #26 - R$ 56,95</option>
+<option value="CALHA COCHO C060 #28 - 52,74">CALHA COCHO C060 #28 - R$ 52,74</option>
+<option value="CALHA COCHO C070 #26 - 63,79">CALHA COCHO C070 #26 - R$ 63,79</option>
+<option value="CALHA COCHO C070 #28 - 58,88">CALHA COCHO C070 #28 - R$ 58,88</option>
+<option value="CALHA COCHO C080 #26 - 70,46">CALHA COCHO C080 #26 - R$ 70,46</option>
+<option value="CALHA COCHO C080 #28 - 64,84">CALHA COCHO C080 #28 - R$ 64,84</option>
+<option value="CALHA CANAL/FURTADA C030 #26 - 36,78">CALHA CANAL/FURTADA C030 #26 - R$ 36,78</option>
+<option value="CALHA CANAL/FURTADA C030 #28 - 34,68">CALHA CANAL/FURTADA C030 #28 - R$ 34,68</option>
+<option value="CALHA CANAL/FURTADA C040 #26 - 43,62">CALHA CANAL/FURTADA C040 #26 - R$ 43,62</option>
+<option value="CALHA CANAL/FURTADA C040 #28 - 40,81">CALHA CANAL/FURTADA C040 #28 - R$ 40,81</option>
+<option value="CALHA CANAL/FURTADA C050 #26 - 50,29">CALHA CANAL/FURTADA C050 #26 - R$ 50,29</option>
+<option value="CALHA CANAL/FURTADA C050 #28 - 46,78">CALHA CANAL/FURTADA C050 #28 - R$ 46,78</option>
+<option value="CALHA CANAL/FURTADA C060 #26 - 56,95">CALHA CANAL/FURTADA C060 #26 - R$ 56,95</option>
+<option value="CALHA CANAL/FURTADA C060 #28 - 52,74">CALHA CANAL/FURTADA C060 #28 - R$ 52,74</option>
+<option value="CALHA CANAL/FURTADA C070 #26 - 63,79">CALHA CANAL/FURTADA C070 #26 - R$ 63,79</option>
+<option value="CALHA CANAL/FURTADA C070 #28 - 58,88">CALHA CANAL/FURTADA C070 #28 - R$ 58,88</option>
+<option value="CALHA CANAL/FURTADA C080 #26 - 70,46">CALHA CANAL/FURTADA C080 #26 - R$ 70,46</option>
+<option value="CALHA CANAL/FURTADA C080 #28 - 64,84">CALHA CANAL/FURTADA C080 #28 - R$ 64,84</option>
+<option value="CALHA CANAL/FURTADA C090 #26 - 77,83">CALHA CANAL/FURTADA C090 #26 - R$ 77,83</option>
+<option value="CALHA CANAL/FURTADA C090 #28 - 71,54">CALHA CANAL/FURTADA C090 #28 - R$ 71,54</option>
+<option value="CALHA CANAL/FURTADA C100 #26 - 83,96">CALHA CANAL/FURTADA C100 #26 - R$ 83,96</option>
+<option value="CALHA CANAL/FURTADA C100 #28 - 76,95">CALHA CANAL/FURTADA C100 #28 - R$ 76,95</option>
+<option value="CALHA CANAL/FURTADA C120 #26 - 97,47">CALHA CANAL/FURTADA C120 #26 - R$ 97,47</option>
+<option value="CALHA CANAL/FURTADA C120 #28 - 89,05">CALHA CANAL/FURTADA C120 #28 - R$ 89,05</option>
+            </select>
+        </div>
+        <div>
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" name="quantidade" required>
+        </div>
+        <div>
+            <button type="button" onclick="adicionarProduto()">Adicionar Produto</button>
+        </div>
+    </form>
+
+    <table id="tabela">
+        <thead>
+            <tr>
+                <th>Prod.</th>
+                <th>Qtd.</th>
+                <th>Valor Uni.</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="corpo-tabela">
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total:</td>
+                <td id="total">R$ 0,00</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div id="resumo">
+        <h3>Resumo</h3>
+        <div>
+            <label for="valor_produtos">Valor dos Produtos:</label>
+            <input type="text" id="valor_produtos" name="valor_produtos" readonly>
+        </div>
+        <div>
+            <label for="frete">Frete:</label>
+            <input type="text" id="frete" name="frete" oninput="calcularTotal()">
+        </div>
+        <div>
+            <label for="total_prazo">Total à prazo:</label>
+            <input type="text" id="total_prazo" name="total_prazo" readonly>
+        </div>
+        <div>
+            <p>(em até 8x de <span id="valor_parcela"></span> sem juros)</p>
+        </div>
+        <div>
+            <label for="valor_pix">Valor à vista no Pix:</label>
+            <input type="text" id="valor_pix" name="valor_pix" readonly>
+        </div>
+        <div>
+            <p>(Economize: <span id="desconto"></span>)</p>
+        </div>
     </div>
+
+    <div>
+        <textarea id="texto_formatado" rows="10" cols="50"></textarea>
+        <br>
+        <button onclick="copiarTexto()">Copiar Texto</button>
+    </div>
+
+    <button onclick="enviarWhatsApp()">Enviar via WhatsApp</button>
+</div>
+
+<script>
+var produtos = [];
+
+function adicionarProduto() {
+    var produtoSelecionado = document.getElementById("produto").value;
+    var quantidade = parseFloat(document.getElementById("quantidade").value.replace(",", "."));
+
+    if (!produtoSelecionado || isNaN(quantidade) || quantidade <= 0) {
+        alert("Por favor, selecione um produto e insira uma quantidade válida.");
+        return;
+    }
+
+    var produtoSplit = produtoSelecionado.split(" - ");
+    var produto = produtoSplit[0];
+    var valorUnitario = parseFloat(produtoSplit[1].replace("R$ ", "").replace(",", "."));
+    var valorTotal = valorUnitario * quantidade;
+
+    var novoProduto = {
+        nome: produto,
+        quantidade: quantidade,
+        valorUnitario: valorUnitario,
+        valorTotal: valorTotal
+    };
+
+    produtos.push(novoProduto);
+
+    atualizarTabela();
+    calcularTotal();
+
+    document.getElementById("quantidade").value = "";
+}
+
+
+function atualizarTabela() {
+    var tabela = document.getElementById("corpo-tabela");
+    tabela.innerHTML = "";
+    
+    for (var i = 0; i < produtos.length; i++) {
+        var produto = produtos[i];
+        var linha = tabela.insertRow();
+        var colunaProduto = linha.insertCell(0);
+        var colunaQuantidade = linha.insertCell(1);
+        var colunaValorUnitario = linha.insertCell(2);
+        var colunaValorTotal = linha.insertCell(3);
+        var colunaRemover = linha.insertCell(4);
+        
+        colunaProduto.innerHTML = produto.nome;
+        colunaQuantidade.innerHTML = produto.quantidade;
+        colunaValorUnitario.innerHTML = produto.valorUnitario.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        colunaValorTotal.innerHTML = produto.valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        
+        var botaoRemover = document.createElement("span");
+        botaoRemover.innerHTML = "<strong style='color: red; cursor: pointer; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'>X</strong>";
+        (function(index) {
+            botaoRemover.onclick = function() {
+                removerProduto(index);
+            };
+        })(i);
+        colunaRemover.appendChild(botaoRemover);
+        colunaRemover.style.position = "relative";
+    }
+}
+
+function calcularTotal() {
+    var total = 0;
+    
+    for (var i = 0; i < produtos.length; i++) {
+        total += produtos[i].valorTotal;
+    }
+    
+    var frete = parseFloat(document.getElementById("frete").value.replace(",", ".") || 0);
+    var totalPrazo = total + frete;
+    var valorParcela = totalPrazo / 8;
+    var desconto = total * 0.1;
+    var valorPix = total - desconto;
+    
+    document.getElementById("valor_produtos").value = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    document.getElementById("total_prazo").value = totalPrazo.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    document.getElementById("valor_parcela").textContent = valorParcela.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    document.getElementById("valor_pix").value = valorPix.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    document.getElementById("desconto").textContent = desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    
+    document.getElementById("total").innerHTML = "R$ " + total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
+
+function removerProduto(index) {
+    produtos.splice(index, 1);
+    atualizarTabela();
+    calcularTotal();
+}
+
+function enviarWhatsApp() {
+    var nome = document.getElementById("nome_cliente").value;
+    var endereco = document.getElementById("endereco_cliente").value;
+    var telefone = document.getElementById("telefone_cliente").value;
+    var email = document.getElementById("email_cliente").value;
+    var valorProdutos = document.getElementById("valor_produtos").value;
+    var frete = document.getElementById("frete").value;
+    var totalPrazo = document.getElementById("total_prazo").value;
+    var valorParcela = document.getElementById("valor_parcela").textContent;
+    var valorPix = document.getElementById("valor_pix").value;
+    var desconto = document.getElementById("desconto").textContent;
+
+    var mensagem = "📋 *Segue abaixo o orçamento solicitado:* 📦\n\n";
+    mensagem += "📝 *Ordem de Serviço*\n\n";
+    mensagem += "👤 *Cliente:*\n";
+    mensagem += "👤 " + nome + "\n";
+    mensagem += "🏠 " + endereco + "\n";
+    mensagem += "📱 " + telefone + "\n";
+    mensagem += "📧 " + email + "\n\n";
+    mensagem += "🛍️ *Produtos:*\n";
+
+    for (var i = 0; i < produtos.length; i++) {
+        mensagem += "📦 " + produtos[i].nome + " - Qtd: " + produtos[i].quantidade + " - Valor Total: " + produtos[i].valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + "\n";
+    }
+
+    mensagem += "\n💰 *Detalhes Financeiros:*\n";
+    mensagem += "💵 Valor dos Produtos: " + valorProdutos + "\n";
+    mensagem += "🚚 Frete: " + frete + "\n";
+    mensagem += "💳 Total à prazo: " + totalPrazo + "\n";
+    mensagem += "💳 (em até 8x de " + valorParcela + " sem juros)\n";
+    mensagem += "💸 Valor à vista no Pix: " + valorPix + "\n";
+    mensagem += "💸 (Economize: " + desconto + ")\n\n";
+    mensagem += "⏰ *Validade:* Este orçamento é válido por 7 dias.\n\n";
+    mensagem += "📞 Entre em contato para mais informações ou para realizar o pedido!";
+
+    // Substitua o número de telefone abaixo pelo número para o qual você deseja enviar a mensagem via WhatsApp
+    var numeroWhatsApp = "SEU-NUMERO";
+    var urlWhatsApp = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(mensagem);
+    window.open(urlWhatsApp);
+}
+
+function copiarTexto() {
+    var textoFormatado = document.getElementById("texto_formatado");
+    textoFormatado.value = "";
+    
+    var nome = document.getElementById("nome_cliente").value;
+    var endereco = document.getElementById("endereco_cliente").value;
+    var telefone = document.getElementById("telefone_cliente").value;
+    var email = document.getElementById("email_cliente").value;
+    var valorProdutos = document.getElementById("valor_produtos").value;
+    var frete = document.getElementById("frete").value;
+    var totalPrazo = document.getElementById("total_prazo").value;
+    var valorParcela = document.getElementById("valor_parcela").textContent;
+    var valorPix = document.getElementById("valor_pix").value;
+    var desconto = document.getElementById("desconto").textContent;
+
+    textoFormatado.value += "📋 *Segue abaixo o orçamento solicitado:* 📦\n\n";
+    textoFormatado.value += "📝 *Ordem de Serviço*\n\n";
+    textoFormatado.value += "👤 *Cliente:*\n";
+    textoFormatado.value += "👤 " + nome + "\n";
+    textoFormatado.value += "🏠 " + endereco + "\n";
+    textoFormatado.value += "📱 " + telefone + "\n";
+    textoFormatado.value += "📧 " + email + "\n\n";
+    textoFormatado.value += "🛍️ *Produtos:*\n";
+
+    for (var i = 0; i < produtos.length; i++) {
+        textoFormatado.value += "📦 " + produtos[i].nome + " - Qtd: " + produtos[i].quantidade + " - Valor Total: " + produtos[i].valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + "\n";
+    }
+
+    textoFormatado.value += "\n💰 *Detalhes Financeiros:*\n";
+    textoFormatado.value += "💵 Valor dos Produtos: " + valorProdutos + "\n";
+    textoFormatado.value += "🚚 Frete: " + frete + "\n";
+    textoFormatado.value += "💳 Total à prazo: " + totalPrazo + "\n";
+    textoFormatado.value += "💳 (em até 8x de " + valorParcela + " sem juros)\n";
+    textoFormatado.value += "💸 Valor à vista no Pix: " + valorPix + "\n";
+    textoFormatado.value += "💸 (Economize: " + desconto + ")\n\n";
+    textoFormatado.value += "⏰ *Validade:* Este orçamento é válido por 7 dias.\n\n";
+    textoFormatado.value += "📞 Entre em contato para mais informações ou para realizar o pedido!";
+    
+    textoFormatado.select();
+    document.execCommand("copy");
+    alert("Texto copiado para a área de transferência!");
+}
+</script>
+
 </body>
 </html>
