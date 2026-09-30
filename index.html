@@ -3,415 +3,750 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ordem de Serviço</title>
+<title>Ordem de Serviço + Rufos e Pingadeiras</title>
 <style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f2f2f2;
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-}
-
-.container h2 {
-    text-align: center;
-    margin-bottom: 20px; /* Add spacing below the title */
-}
-
-form div {
-    margin-bottom: 20px;
-}
-
-label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px; /* Add spacing below labels */
-}
-
-input[type="text"],
-input[type="email"],
-textarea,
-input[type="number"],
-select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-input[type="submit"],
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease; /* Add smooth transition */
-}
-
-input[type="submit"]:hover,
-button:hover {
-    background-color: #45a049;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table,
-th,
-td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-th {
-    text-align: left;
-    background-color: #f2f2f2;
-}
-
-tfoot {
-    font-weight: bold;
-}
-
-td:last-child {
-    text-align: center;
-}
-
-#corpo-tabela tr:hover {
-    background-color: #f2f2f2;
-}
-
-#resumo {
-    margin-top: 20px;
-}
-
-#texto_formatado {
-    width: 100%;
-    height: 100px;
-    margin-bottom: 10px;
-    padding: 10px; /* Add padding for better readability */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-button {
-    margin-top: 10px; /* Add spacing above buttons */
-}
-
-button:active {
-    transform: translateY(1px); /* Add slight click effect */
-}
-
-#form-produto {
-    margin-bottom: 40px;
-}
+    /* ========== ESTILOS GLOBAIS ========== */
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f2f2f2;
+    }
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    }
+    h2, h3 {
+        text-align: center;
+        margin-top: 0;
+    }
+    hr {
+        margin: 30px 0;
+        border: 0;
+        border-top: 2px solid #ddd;
+    }
+    .section {
+        background: #fafafa;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+        border: 1px solid #e0e0e0;
+    }
+    .section h3 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        text-align: left;
+        border-left: 4px solid #4CAF50;
+        padding-left: 10px;
+    }
+    form div {
+        margin-bottom: 15px;
+    }
+    label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-family: inherit;
+    }
+    input[readonly] {
+        background-color: #e9ecef;
+        cursor: default;
+    }
+    button {
+        padding: 10px 15px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    .btn-secondary {
+        background-color: #6c757d;
+    }
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+    .btn-warning {
+        background-color: #ffc107;
+        color: #212529;
+    }
+    .btn-warning:hover {
+        background-color: #e0a800;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        vertical-align: middle;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    tfoot {
+        font-weight: bold;
+        background-color: #f9f9f9;
+    }
+    .remove-produto {
+        color: red;
+        cursor: pointer;
+        font-weight: bold;
+        text-align: center;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        background: #ffe6e6;
+        border-radius: 50%;
+    }
+    .remove-produto:hover {
+        background: #ffcccc;
+    }
+    .flex-row {
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+    }
+    .flex-row > div {
+        flex: 1;
+    }
+    .small-text {
+        font-size: 12px;
+        color: #666;
+        margin-top: 5px;
+    }
+    .preco-preview {
+        background: #e8f5e9;
+        padding: 8px;
+        border-radius: 5px;
+        margin: 10px 0;
+        font-weight: bold;
+        text-align: center;
+    }
+    .toggle-btn {
+        margin: 10px 0;
+        background-color: #17a2b8;
+    }
+    .toggle-btn:hover {
+        background-color: #138496;
+    }
+    #resumo input {
+        background-color: #fff3e0;
+    }
+    #texto_formatado {
+        width: 100%;
+        height: 120px;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-family: monospace;
+    }
 </style>
 </head>
 <body>
-
 <div class="container">
-    <h2>Ordem de Serviço</h2>
-    <form id="form">
+    <h2>📋 Ordem de Serviço + Rufos & Pingadeiras</h2>
+    
+    <!-- ========== DADOS DO CLIENTE ========== -->
+    <div class="section">
+        <h3>👤 Dados do Cliente</h3>
         <div>
             <label for="nome_cliente">Nome do Cliente:</label>
-            <input type="text" id="nome_cliente" name="nome_cliente" required>
+            <input type="text" id="nome_cliente" required>
         </div>
         <div>
-            <label for="endereco_cliente">Endereço do Cliente:</label>
-            <input type="text" id="endereco_cliente" name="endereco_cliente" required>
+            <label for="endereco_cliente">Endereço:</label>
+            <input type="text" id="endereco_cliente" required>
         </div>
         <div>
-            <label for="telefone_cliente">Telefone do Cliente:</label>
-            <input type="text" id="telefone_cliente" name="telefone_cliente" required>
+            <label for="telefone_cliente">Telefone:</label>
+            <input type="text" id="telefone_cliente" required>
         </div>
         <div>
-            <label for="email_cliente">E-mail do Cliente:</label>
-            <input type="email" id="email_cliente" name="email_cliente">
+            <label for="email_cliente">E-mail:</label>
+            <input type="email" id="email_cliente">
         </div>
+    </div>
+
+    <!-- ========== SEÇÃO 1: PRODUTOS PADRÃO (CALHAS, PARAFUSOS, ETC) ========== -->
+    <div class="section">
+        <h3>🛒 Produtos (Calhas / Acessórios)</h3>
         <div>
-            <label for="produto">Produto:</label>
-            <select id="produto" name="produto">
+            <label for="produto">Selecione o produto:</label>
+            <select id="produto">
                 <option value="">Selecione um produto...</option>
-<option value="Corte e Dobra de Calha metro linear - 15">Corte e Dobra de Calha metro linear - R$ 15</option>
-<option value="PARAF. FLANG. 4,5X4,5/BUCHA 6 Mlinear  - 1,50">PARAF. FLANG. 4,5X4,5/BUCHA 6 Mlinear - R$ 1,50</option>
-<option value="PARAF. P. AGULHA  FLAN. 10Unid - 1,50">PARAF. P. AGULHA  FLAN. 10Unid - R$ 1,50</option>
-<option value="SELANTE PU40 WURTH/WMAX 387g - 20,00">SELANTE PU40 WURTH/WMAX 387g - R$ 20,00</option>
-<option value="SELANTE PU40 UNIPRO 387g - 20,00">SELANTE PU40 UNIPRO 387g - R$ 20,00</option>
-<option value="SELANTE PU40 UNIPRO 800g - 55,00">SELANTE PU40 UNIPRO 800g - R$ 55,00</option>
-<option value="CALHA DE BEIRAL C040 #26 - 49,45">CALHA DE BEIRAL C040 #26 - R$ 49,45</option>
-<option value="CALHA PLATIBANDA C050 #26 - 56,16">CALHA PLATIBANDA C050 #26 - R$ 56,16</option>
-<option value="CALHA PLATIBANDA C060 #26 - 62,87">CALHA PLATIBANDA C060 #26 - R$ 62,87</option>
-<option value="CALHA PLATIBANDA C070 #26 - 69,59">CALHA PLATIBANDA C070 #26 - R$ 69,59</option>
-<option value="CALHA PLATIBANDA C080 #26 - 76,30">CALHA PLATIBANDA C080 #26 - R$ 76,30</option>
-<option value="CALHA COCHO C050 #26 - 56,16">CALHA COCHO C050 #26 - R$ 56,16</option>
-<option value="CALHA COCHO C060 #26 - 62,87">CALHA COCHO C060 #26 - R$ 62,87</option>
-<option value="CALHA COCHO C070 #26 - 69,59">CALHA COCHO C070 #26 - R$ 69,59</option>
-<option value="CALHA COCHO C080 #26 - 76,30">CALHA COCHO C080 #26 - R$ 76,30</option>
-<option value="CALHA CANAL/FURTADA C040 #26 - 49,45">CALHA CANAL/FURTADA C040 #26 - R$ 49,45</option>
-<option value="CALHA CANAL/FURTADA C050 #26 - 56,16">CALHA CANAL/FURTADA C050 #26 - R$ 56,16</option>
-<option value="CALHA CANAL/FURTADA C060 #26 - 62,87">CALHA CANAL/FURTADA C060 #26 - R$ 62,87</option>
-<option value="CALHA CANAL/FURTADA C070 #26 - 69,59">CALHA CANAL/FURTADA C070 #26 - R$ 69,59</option>
-<option value="CALHA CANAL/FURTADA C080 #26 - 76,30">CALHA CANAL/FURTADA C080 #26 - R$ 76,30</option>
-<option value="CALHA CANAL/FURTADA C090 #26 - 83,01">CALHA CANAL/FURTADA C090 #26 - R$ 83,01</option>
-<option value="CALHA CANAL/FURTADA C100 #26 - 89,72">CALHA CANAL/FURTADA C100 #26 - R$ 89,72</option>
-<option value="CALHA CANAL/FURTADA C120 #26 - 103,15">CALHA CANAL/FURTADA C120 #26 - R$ 103,15</option>
+                <option value="Corte e Dobra de Calha metro linear - 15">Corte e Dobra de Calha metro linear - R$ 15</option>
+                <option value="PARAF. FLANG. 4,5X4,5/BUCHA 6 Mlinear  - 1,50">PARAF. FLANG. 4,5X4,5/BUCHA 6 Mlinear - R$ 1,50</option>
+                <option value="PARAF. P. AGULHA  FLAN. 10Unid - 1,50">PARAF. P. AGULHA  FLAN. 10Unid - R$ 1,50</option>
+                <option value="PU ALUZINCO SILVA SELANTES 800g - 55,00">PU ALUZINCO SILVA SELANTES 800g - R$ 55,00</option>
+                <option value="CALHA DE BEIRAL C040 #26 - 49,45">CALHA DE BEIRAL C040 #26 - R$ 49,45</option>
+                <option value="CALHA PLATIBANDA C050 #26 - 56,16">CALHA PLATIBANDA C050 #26 - R$ 56,16</option>
+                <option value="CALHA PLATIBANDA C060 #26 - 62,87">CALHA PLATIBANDA C060 #26 - R$ 62,87</option>
+                <option value="CALHA PLATIBANDA C070 #26 - 69,59">CALHA PLATIBANDA C070 #26 - R$ 69,59</option>
+                <option value="CALHA PLATIBANDA C080 #26 - 76,30">CALHA PLATIBANDA C080 #26 - R$ 76,30</option>
+                <option value="CALHA COCHO C050 #26 - 56,16">CALHA COCHO C050 #26 - R$ 56,16</option>
+                <option value="CALHA COCHO C060 #26 - 62,87">CALHA COCHO C060 #26 - R$ 62,87</option>
+                <option value="CALHA COCHO C070 #26 - 69,59">CALHA COCHO C070 #26 - R$ 69,59</option>
+                <option value="CALHA COCHO C080 #26 - 76,30">CALHA COCHO C080 #26 - R$ 76,30</option>
+                <option value="CALHA CANAL/FURTADA C040 #26 - 49,45">CALHA CANAL/FURTADA C040 #26 - R$ 49,45</option>
+                <option value="CALHA CANAL/FURTADA C050 #26 - 56,16">CALHA CANAL/FURTADA C050 #26 - R$ 56,16</option>
+                <option value="CALHA CANAL/FURTADA C060 #26 - 62,87">CALHA CANAL/FURTADA C060 #26 - R$ 62,87</option>
+                <option value="CALHA CANAL/FURTADA C070 #26 - 69,59">CALHA CANAL/FURTADA C070 #26 - R$ 69,59</option>
+                <option value="CALHA CANAL/FURTADA C080 #26 - 76,30">CALHA CANAL/FURTADA C080 #26 - R$ 76,30</option>
+                <option value="CALHA CANAL/FURTADA C090 #26 - 83,01">CALHA CANAL/FURTADA C090 #26 - R$ 83,01</option>
+                <option value="CALHA CANAL/FURTADA C100 #26 - 89,72">CALHA CANAL/FURTADA C100 #26 - R$ 89,72</option>
+                <option value="CALHA CANAL/FURTADA C120 #26 - 103,15">CALHA CANAL/FURTADA C120 #26 - R$ 103,15</option>
             </select>
         </div>
         <div>
-            <label for="quantidade">Quantidade:</label>
-            <input type="number" id="quantidade" name="quantidade" required>
+            <label for="quantidade">Quantidade (unidades ou metros):</label>
+            <input type="number" id="quantidade" step="0.01" placeholder="Ex: 5">
+        </div>
+        <button type="button" onclick="adicionarProdutoPadrao()">➕ Adicionar Produto</button>
+    </div>
+
+    <!-- ========== SEÇÃO 2: RUFOS E PINGADEIRAS (COM PREÇOS DINÂMICOS) ========== -->
+    <div class="section">
+        <h3>📐 Rufos e Pingadeiras (por metro linear)</h3>
+        <div>
+            <label for="largura_rufo">Largura (cm):</label>
+            <select id="largura_rufo"></select>
         </div>
         <div>
-            <button type="button" onclick="adicionarProduto()">Adicionar Produto</button>
+            <label for="metros_rufo">Metros lineares:</label>
+            <input type="number" id="metros_rufo" step="0.1" placeholder="Ex: 12.5">
         </div>
-    </form>
-
-    <table id="tabela">
+        <div>
+            <label>
+                <input type="checkbox" id="fix_rufo"> Incluir fixação (+ R$ 7,00 por metro)
+            </label>
+        </div>
+        <div class="preco-preview" id="preview_rufo">💰 Valor por metro: R$ 0,00</div>
+        <button type="button" onclick="adicionarRufo()">➕ Adicionar Rufo / Pingadeira</button>
+        <button type="button" class="btn-secondary toggle-btn" onclick="toggleTabelaReferencia()">📊 Mostrar/Ocultar Tabela de Referência</button>
+		<button type="button" class="btn-secondary toggle-btn" onclick="toggleTabelaMaterial()">📊 Custo / Negociação</button>
+        
+        <!-- Tabela de referência automática (base Excel) -->
+<div id="area_tabela_referencia" style="display:none; margin-top: 15px;">
+    <h4>Tabela de Preços - Rufos (Multiplicador 2.5)</h4>
+    <table style="width:100%; font-size:13px;">
         <thead>
             <tr>
-                <th>Prod.</th>
-                <th>Qtd.</th>
-                <th>Valor Uni.</th>
-                <th>Total</th>
-                <th></th>
+                <th>Largura (cm)</th>
+                <th>Sem fixação (R$/m)</th>
+                <th>Com fixação (R$/m)</th>
             </tr>
         </thead>
-        <tbody id="corpo-tabela">
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3">Total:</td>
-                <td id="total">R$ 0,00</td>
-                <td></td>
+        <tbody id="tabela_auto_rufo"></tbody>
+    </table>
+    <div class="small-text">* Valores calculados: (largura/100) × R$ 38,30 (m²) × 2.5 + R$ 7 fixação por metro linear se aplicável.</div>
+</div>
+
+<div id="area_material" style="display:none; margin-top:15px;">
+    <h4>📊 Custo / Negociação</h4>
+
+    <table style="width:100%; font-size:13px; border-collapse: collapse;">
+        <thead>
+            <tr style="background-color:#f2f2f2;">
+                <th>Área</th>
+                <th>Peso #26</th>
+                <th>Peso #28</th>
+                <th>Custo Material</th>
+                <th>Venda</th>
+                <th>Lucro</th>
+                <th>Margem</th>
             </tr>
-        </tfoot>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td id="area_total_material">0,00 m²</td>
+
+                <td id="peso26_total">0,00 kg</td>
+
+                <td id="peso28_total">0,00 kg</td>
+
+                <td>
+                    #26:
+                    <input type="number"
+                           id="preco_kg_26"
+                           value="5"
+                           step="0.10"
+                           style="width:70px;">
+                    <br><br>
+
+                    #28:
+                    <input type="number"
+                           id="preco_kg_28"
+                           value="6"
+                           step="0.10"
+                           style="width:70px;">
+
+                    <hr>
+
+                    <strong id="total_materiais_valor">
+                        R$ 0,00
+                    </strong>
+                </td>
+
+                <td id="total_venda_valor">
+                    R$ 0,00
+                </td>
+
+                <td id="lucro_total">
+                    R$ 0,00
+                </td>
+
+                <td id="margem_total">
+                    0%
+                </td>
+            </tr>
+        </tbody>
     </table>
 
-    <div id="resumo">
-        <h3>Resumo</h3>
-        <div>
-            <label for="valor_produtos">Valor dos Produtos:</label>
-            <input type="text" id="valor_produtos" name="valor_produtos" readonly>
-        </div>
-        <div>
-            <label for="frete">Frete:</label>
-            <input type="text" id="frete" name="frete" oninput="calcularTotal()">
-        </div>
-        <div>
-            <label for="total_prazo">Total à prazo:</label>
-            <input type="text" id="total_prazo" name="total_prazo" readonly>
-        </div>
-        <div>
-            <p>(em até 8x de <span id="valor_parcela"></span> sem juros)</p>
-        </div>
-        <div>
-            <label for="valor_pix">Valor à vista no Pix:</label>
-            <input type="text" id="valor_pix" name="valor_pix" readonly>
-        </div>
-        <div>
-            <p>(Economize: <span id="desconto"></span>)</p>
-        </div>
+    <div class="small-text">
+        * #26 = 4 kg/m² | #28 = 3,44 kg/m²
+    </div>
+</div>
+
+    <!-- ========== LISTA DE PRODUTOS (TABELA ÚNICA) ========== -->
+    <div class="section">
+        <h3>🛍️ Itens da Ordem de Serviço</h3>
+        <table id="tabela-principal">
+            <thead>
+                <tr><th>Produto / Descrição</th><th>Qtd.</th><th>Valor Unit.</th><th>Total</th><th></th></tr>
+            </thead>
+            <tbody id="corpo-tabela"></tbody>
+            <tfoot>
+                <tr><td colspan="3">Total Geral</td><td id="total-geral-td">R$ 0,00</td><td></td></tr>
+            </tfoot>
+        </table>
     </div>
 
+    <!-- ========== RESUMO FINANCEIRO E PAGAMENTO ========== -->
+    <div class="section" id="resumo">
+        <h3>💰 Resumo Financeiro</h3>
+        <div><label>Valor dos Produtos:</label><input type="text" id="valor_produtos" readonly></div>
+        <div><label>Frete (R$):</label><input type="text" id="frete" placeholder="0,00" oninput="calcularTotalGeral()"></div>
+        <div><label>Total à prazo (até 8x):</label><input type="text" id="total_prazo" readonly></div>
+        <div><p>(em até 8x de <strong id="valor_parcela">R$ 0,00</strong> sem juros)</p></div>
+        <div><label>Valor à vista no Pix (10% desconto):</label><input type="text" id="valor_pix" readonly></div>
+        <div><p>💸 Economize: <span id="desconto">R$ 0,00</span></p></div>
+    </div>
+
+    <!-- ========== ÁREA DE TEXTO E ENVIO ========== -->
     <div>
-        <textarea id="texto_formatado" rows="10" cols="50"></textarea>
-        <br>
-        <button onclick="copiarTexto()">Copiar Texto</button>
+        <textarea id="texto_formatado" rows="6" placeholder="Prévia do orçamento..."></textarea>
+        <div style="display:flex; gap:10px;">
+            <button onclick="copiarTexto()">📋 Copiar Orçamento</button>
+            <button onclick="enviarWhatsApp()">📱 Enviar via WhatsApp</button>
+        </div>
     </div>
-
-    <button onclick="enviarWhatsApp()">Enviar via WhatsApp</button>
 </div>
 
 <script>
-var produtos = [];
+    // ==================== DADOS GLOBAIS ====================
+    let listaProdutos = [];
 
-function adicionarProduto() {
-    var produtoSelecionado = document.getElementById("produto").value;
-    var quantidade = parseFloat(document.getElementById("quantidade").value.replace(",", "."));
+    // Preço por metro quadrado
+    const PRECO_M2 = 40; //VALOR DO 
+    // Multiplicador (2.5)
+    const MULT_RUFO = 2.5;
+    // Acréscimo fixo por metro linear (fixação)
+    const FIXO_RUFO = 7.00;
 
-    if (!produtoSelecionado || isNaN(quantidade) || quantidade <= 0) {
-        alert("Por favor, selecione um produto e insira uma quantidade válida.");
-        return;
+    // Larguras disponíveis (automáticas, 20 a 120 cm passo 5)
+    const LARGURAS = [];
+    for (let i = 15; i <= 120; i += 5) {
+        LARGURAS.push(i);
     }
 
-    var produtoSplit = produtoSelecionado.split(" - ");
-    var produto = produtoSplit[0];
-    var valorUnitario = parseFloat(produtoSplit[1].replace("R$ ", "").replace(",", "."));
-    var valorTotal = valorUnitario * quantidade;
-
-    var novoProduto = {
-        nome: produto,
-        quantidade: quantidade,
-        valorUnitario: valorUnitario,
-        valorTotal: valorTotal
-    };
-
-    produtos.push(novoProduto);
-
-    atualizarTabela();
-    calcularTotal();
-
-    document.getElementById("quantidade").value = "";
-}
-
-
-function atualizarTabela() {
-    var tabela = document.getElementById("corpo-tabela");
-    tabela.innerHTML = "";
-    
-    for (var i = 0; i < produtos.length; i++) {
-        var produto = produtos[i];
-        var linha = tabela.insertRow();
-        var colunaProduto = linha.insertCell(0);
-        var colunaQuantidade = linha.insertCell(1);
-        var colunaValorUnitario = linha.insertCell(2);
-        var colunaValorTotal = linha.insertCell(3);
-        var colunaRemover = linha.insertCell(4);
-        
-        colunaProduto.innerHTML = produto.nome;
-        colunaQuantidade.innerHTML = produto.quantidade;
-        colunaValorUnitario.innerHTML = produto.valorUnitario.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        colunaValorTotal.innerHTML = produto.valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        
-        var botaoRemover = document.createElement("span");
-        botaoRemover.innerHTML = "<strong style='color: red; cursor: pointer; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'>X</strong>";
-        (function(index) {
-            botaoRemover.onclick = function() {
-                removerProduto(index);
-            };
-        })(i);
-        colunaRemover.appendChild(botaoRemover);
-        colunaRemover.style.position = "relative";
-    }
-}
-
-function calcularTotal() {
-    var total = 0;
-    
-    for (var i = 0; i < produtos.length; i++) {
-        total += produtos[i].valorTotal;
-    }
-    
-    var frete = parseFloat(document.getElementById("frete").value.replace(",", ".") || 0);
-    var totalPrazo = total + frete;
-    var valorParcela = totalPrazo / 8;
-    var desconto = total * 0.1;
-    var valorPix = total - desconto;
-    
-    document.getElementById("valor_produtos").value = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    document.getElementById("total_prazo").value = totalPrazo.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    document.getElementById("valor_parcela").textContent = valorParcela.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    document.getElementById("valor_pix").value = valorPix.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    document.getElementById("desconto").textContent = desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    
-    document.getElementById("total").innerHTML = "R$ " + total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-}
-
-function removerProduto(index) {
-    produtos.splice(index, 1);
-    atualizarTabela();
-    calcularTotal();
-}
-
-function enviarWhatsApp() {
-    var nome = document.getElementById("nome_cliente").value;
-    var endereco = document.getElementById("endereco_cliente").value;
-    var telefone = document.getElementById("telefone_cliente").value;
-    var email = document.getElementById("email_cliente").value;
-    var valorProdutos = document.getElementById("valor_produtos").value;
-    var frete = document.getElementById("frete").value;
-    var totalPrazo = document.getElementById("total_prazo").value;
-    var valorParcela = document.getElementById("valor_parcela").textContent;
-    var valorPix = document.getElementById("valor_pix").value;
-    var desconto = document.getElementById("desconto").textContent;
-
-    var mensagem = "📋 *Segue abaixo o orçamento solicitado:* 📦\n\n";
-    mensagem += "📝 *Ordem de Serviço*\n\n";
-    mensagem += "👤 *Cliente:*\n";
-    mensagem += "👤 " + nome + "\n";
-    mensagem += "🏠 " + endereco + "\n";
-    mensagem += "📱 " + telefone + "\n";
-    mensagem += "📧 " + email + "\n\n";
-    mensagem += "🛍️ *Produtos:*\n";
-
-    for (var i = 0; i < produtos.length; i++) {
-        mensagem += "📦 " + produtos[i].nome + " - Qtd: " + produtos[i].quantidade + " - Valor Total: " + produtos[i].valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + "\n";
+    // ========== POPULAR SELECT DE LARGURAS ==========
+    function popularSelectRufo() {
+        let select = document.getElementById("largura_rufo");
+        select.innerHTML = "";
+        for (let larg of LARGURAS) {
+            let opt = document.createElement("option");
+            opt.value = larg;
+            opt.text = larg + " cm";
+            select.appendChild(opt);
+        }
+        select.onchange = atualizarPreviewRufo;
+        document.getElementById("fix_rufo").onchange = atualizarPreviewRufo;
+        document.getElementById("metros_rufo").oninput = atualizarPreviewRufo;
+        atualizarPreviewRufo();
     }
 
-    mensagem += "\n💰 *Detalhes Financeiros:*\n";
-    mensagem += "💵 Valor dos Produtos: " + valorProdutos + "\n";
-    mensagem += "🚚 Frete: " + frete + "\n";
-    mensagem += "💳 Total à prazo: " + totalPrazo + "\n";
-    mensagem += "💳 (em até 8x de " + valorParcela + " sem juros)\n";
-    mensagem += "💸 Valor à vista no Pix: " + valorPix + "\n";
-    mensagem += "💸 (Economize: " + desconto + ")\n\n";
-    mensagem += "⏰ *Validade:* Este orçamento é válido por 7 dias.\n\n";
-    mensagem += "📞 Entre em contato para mais informações ou para realizar o pedido!";
-
-    // Substitua o número de telefone abaixo pelo número para o qual você deseja enviar a mensagem via WhatsApp
-    var numeroWhatsApp = "SEU-NUMERO";
-    var urlWhatsApp = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(mensagem);
-    window.open(urlWhatsApp);
-}
-
-function copiarTexto() {
-    var textoFormatado = document.getElementById("texto_formatado");
-    textoFormatado.value = "";
-    
-    var nome = document.getElementById("nome_cliente").value;
-    var endereco = document.getElementById("endereco_cliente").value;
-    var telefone = document.getElementById("telefone_cliente").value;
-    var email = document.getElementById("email_cliente").value;
-    var valorProdutos = document.getElementById("valor_produtos").value;
-    var frete = document.getElementById("frete").value;
-    var totalPrazo = document.getElementById("total_prazo").value;
-    var valorParcela = document.getElementById("valor_parcela").textContent;
-    var valorPix = document.getElementById("valor_pix").value;
-    var desconto = document.getElementById("desconto").textContent;
-
-    textoFormatado.value += "📋 *Segue abaixo o orçamento solicitado:* 📦\n\n";
-    textoFormatado.value += "📝 *Ordem de Serviço*\n\n";
-    textoFormatado.value += "👤 *Cliente:*\n";
-    textoFormatado.value += "👤 " + nome + "\n";
-    textoFormatado.value += "🏠 " + endereco + "\n";
-    textoFormatado.value += "📱 " + telefone + "\n";
-    textoFormatado.value += "📧 " + email + "\n\n";
-    textoFormatado.value += "🛍️ *Produtos:*\n";
-
-    for (var i = 0; i < produtos.length; i++) {
-        textoFormatado.value += "📦 " + produtos[i].nome + " - Qtd: " + produtos[i].quantidade + " - Valor Total: " + produtos[i].valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + "\n";
+    // Calcula o valor por metro linear com base na largura, multiplicador e fixação
+    function calcularValorMetroLinear(larguraCm, comFixacao) {
+        let valorBase = (larguraCm / 100) * PRECO_M2;
+        let valorMetro = valorBase * MULT_RUFO;
+        if (comFixacao) valorMetro += FIXO_RUFO;
+        return valorMetro;
     }
 
-    textoFormatado.value += "\n💰 *Detalhes Financeiros:*\n";
-    textoFormatado.value += "💵 Valor dos Produtos: " + valorProdutos + "\n";
-    textoFormatado.value += "🚚 Frete: " + frete + "\n";
-    textoFormatado.value += "💳 Total à prazo: " + totalPrazo + "\n";
-    textoFormatado.value += "💳 (em até 8x de " + valorParcela + " sem juros)\n";
-    textoFormatado.value += "💸 Valor à vista no Pix: " + valorPix + "\n";
-    textoFormatado.value += "💸 (Economize: " + desconto + ")\n\n";
-    textoFormatado.value += "⏰ *Validade:* Este orçamento é válido por 7 dias.\n\n";
-    textoFormatado.value += "📞 Entre em contato para mais informações ou para realizar o pedido!";
-    
-    textoFormatado.select();
-    document.execCommand("copy");
-    alert("Texto copiado para a área de transferência!");
+    function atualizarPreviewRufo() {
+        let largura = parseFloat(document.getElementById("largura_rufo").value);
+        let metros = parseFloat(document.getElementById("metros_rufo").value) || 0;
+        let usarFix = document.getElementById("fix_rufo").checked;
+
+        if (isNaN(largura) || metros <= 0) {
+            document.getElementById("preview_rufo").innerHTML = 
+                `💰 Preço por m²: ${PRECO_M2.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}<br>
+                 📏 Insira os metros para ver o valor por metro linear e total.`;
+            return;
+        }
+
+        let valorMetro = calcularValorMetroLinear(largura, usarFix);
+        let total = valorMetro * metros;
+        document.getElementById("preview_rufo").innerHTML = 
+            `💰 Preço por m²: ${PRECO_M2.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}<br>
+             📐 Valor por metro linear: ${valorMetro.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}<br>
+             💰 Total estimado: ${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
+    }
+
+    // Gerar tabela de referência (sem a coluna Base)
+    function gerarTabelaReferencia() {
+        let tbody = document.getElementById("tabela_auto_rufo");
+        tbody.innerHTML = "";
+        for (let larg of LARGURAS) {
+            let valorBase = (larg / 100) * PRECO_M2;
+            let semFix = valorBase * MULT_RUFO;
+            let comFix = semFix + FIXO_RUFO;
+            let row = tbody.insertRow();
+            row.insertCell(0).innerText = larg + " cm";
+            row.insertCell(1).innerText = semFix.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            row.insertCell(2).innerText = comFix.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+        // Atualizar o texto explicativo
+        let smallTextDiv = document.querySelector("#area_tabela_referencia .small-text");
+        if (smallTextDiv) {
+            smallTextDiv.innerHTML = `* Valores calculados: (largura/100) × R$ ${PRECO_M2.toFixed(2)} (m²) × 2.5 + R$ ${FIXO_RUFO.toFixed(2)} fixação por metro linear se aplicável.`;
+        }
+    }
+
+    function toggleTabelaReferencia() {
+        let area = document.getElementById("area_tabela_referencia");
+        area.style.display = area.style.display === "none" ? "block" : "none";
+    }
+
+    function toggleTabelaMaterial() {
+        let area = document.getElementById("area_material");
+        area.style.display = area.style.display === "none" ? "block" : "none";
+    }
+
+    // ========== RESUMO DE MATERIAIS COM VALOR MONETÁRIO ==========
+function atualizarResumoMaterial() {
+
+    let areaTotal = 0;
+
+    for (let item of listaProdutos) {
+
+        if (item.largura) {
+
+            areaTotal +=
+                (item.largura / 100) *
+                item.quantidade;
+        }
+    }
+
+    let peso26 = areaTotal * 4;
+    let peso28 = areaTotal * 3.44;
+
+    document.getElementById("area_total_material").innerText =
+        areaTotal.toFixed(2) + " m²";
+
+    document.getElementById("peso26_total").innerText =
+        peso26.toFixed(2) + " kg";
+
+    document.getElementById("peso28_total").innerText =
+        peso28.toFixed(2) + " kg";
+
+    let preco26 =
+        parseFloat(
+            document.getElementById("preco_kg_26").value
+        ) || 0;
+
+    let preco28 =
+        parseFloat(
+            document.getElementById("preco_kg_28").value
+        ) || 0;
+
+    let custo26 = peso26 * preco26;
+
+    let custo28 = peso28 * preco28;
+
+    let custoTotal =
+        custo26 + custo28;
+
+    let vendaTotal = 0;
+
+    for (let item of listaProdutos) {
+
+        vendaTotal += item.valorTotal;
+    }
+
+    let lucroTotal =
+        vendaTotal - custoTotal;
+
+    let margem = 0;
+
+    if (custoTotal > 0) {
+
+        margem =
+            ((lucroTotal / custoTotal) * 100);
+    }
+
+    document.getElementById("total_materiais_valor")
+        .innerText =
+        custoTotal.toLocaleString(
+            'pt-BR',
+            {
+                style: 'currency',
+                currency: 'BRL'
+            }
+        );
+
+    document.getElementById("total_venda_valor")
+        .innerText =
+        vendaTotal.toLocaleString(
+            'pt-BR',
+            {
+                style: 'currency',
+                currency: 'BRL'
+            }
+        );
+
+    document.getElementById("lucro_total")
+        .innerText =
+        lucroTotal.toLocaleString(
+            'pt-BR',
+            {
+                style: 'currency',
+                currency: 'BRL'
+            }
+        );
+
+    document.getElementById("margem_total")
+        .innerText =
+        margem.toFixed(1) + "%";
 }
+
+    // ========== ADICIONAR PRODUTO PADRÃO ==========
+    function adicionarProdutoPadrao() {
+        let produtoSelecionado = document.getElementById("produto").value;
+        let quantidade = parseFloat(document.getElementById("quantidade").value);
+        if (!produtoSelecionado || isNaN(quantidade) || quantidade <= 0) {
+            alert("Por favor, selecione um produto e insira uma quantidade válida.");
+            return;
+        }
+        let produtoSplit = produtoSelecionado.split(" - ");
+        let nomeProduto = produtoSplit[0];
+        let valorUnitario = parseFloat(produtoSplit[1].replace("R$ ", "").replace(",", "."));
+        let valorTotal = valorUnitario * quantidade;
+        let largura = null;
+        let match = nomeProduto.match(/C(\d{3})/);
+        if (match) largura = parseInt(match[1], 10);
+        listaProdutos.push({
+            nome: nomeProduto,
+            quantidade: quantidade,
+            largura: largura,
+            valorUnitario: valorUnitario,
+            valorTotal: valorTotal
+        });
+        atualizarTabelaUnificada();
+        calcularTotalGeral();
+        atualizarResumoMaterial();
+        document.getElementById("quantidade").value = "";
+    }
+
+    // ========== ADICIONAR RUFO / PINGADEIRA ==========
+    function adicionarRufo() {
+        let largura = parseFloat(document.getElementById("largura_rufo").value);
+        let metros = parseFloat(document.getElementById("metros_rufo").value);
+        let usarFix = document.getElementById("fix_rufo").checked;
+        if (isNaN(largura) || isNaN(metros) || metros <= 0) {
+            alert("Preencha corretamente a largura e os metros do rufo/pingadeira.");
+            return;
+        }
+        let valorMetro = calcularValorMetroLinear(largura, usarFix);
+        let valorTotal = valorMetro * metros;
+        let nomeItem = `Rufo/Pingadeira ${largura}cm` + (usarFix ? " (c/ fixação)" : " (s/ fixação)");
+        listaProdutos.push({
+            nome: nomeItem,
+            quantidade: metros,
+            largura: largura,
+            valorUnitario: valorMetro,
+            valorTotal: valorTotal
+        });
+        atualizarTabelaUnificada();
+        calcularTotalGeral();
+        atualizarResumoMaterial();
+        document.getElementById("metros_rufo").value = "";
+        document.getElementById("fix_rufo").checked = false;
+        atualizarPreviewRufo();
+    }
+
+    // ========== ATUALIZAR TABELA ÚNICA ==========
+    function atualizarTabelaUnificada() {
+        let tbody = document.getElementById("corpo-tabela");
+        tbody.innerHTML = "";
+        for (let i = 0; i < listaProdutos.length; i++) {
+            let item = listaProdutos[i];
+            let linha = tbody.insertRow();
+            linha.insertCell(0).innerHTML = item.nome;
+            linha.insertCell(1).innerHTML = item.quantidade;
+            linha.insertCell(2).innerHTML = item.valorUnitario.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            linha.insertCell(3).innerHTML = item.valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            let celRemover = linha.insertCell(4);
+            let btnRemove = document.createElement("span");
+            btnRemove.innerHTML = "✖";
+            btnRemove.className = "remove-produto";
+            btnRemove.style.cursor = "pointer";
+            btnRemove.style.display = "inline-block";
+            btnRemove.style.textAlign = "center";
+            btnRemove.onclick = (function(idx) { return function() { removerProduto(idx); }; })(i);
+            celRemover.appendChild(btnRemove);
+            celRemover.style.textAlign = "center";
+        }
+    }
+
+    function removerProduto(index) {
+        listaProdutos.splice(index, 1);
+        atualizarTabelaUnificada();
+        calcularTotalGeral();
+        atualizarResumoMaterial();
+    }
+
+    // ========== CÁLCULO DOS TOTAIS ==========
+    function calcularTotalGeral() {
+        let somaProdutos = 0;
+        for (let i = 0; i < listaProdutos.length; i++) {
+            somaProdutos += listaProdutos[i].valorTotal;
+        }
+        let frete = parseFloat(document.getElementById("frete").value.replace(",", ".") || 0);
+        let totalPrazo = somaProdutos + frete;
+        let valorParcela = totalPrazo / 8;
+        let descontoPix = somaProdutos * 0.1;
+        let valorPix = somaProdutos - descontoPix;
+        document.getElementById("valor_produtos").value = somaProdutos.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        document.getElementById("total_prazo").value = totalPrazo.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        document.getElementById("valor_parcela").innerText = valorParcela.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        document.getElementById("valor_pix").value = valorPix.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        document.getElementById("desconto").innerText = descontoPix.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        document.getElementById("total-geral-td").innerHTML = somaProdutos.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        gerarTextoOrcamento();
+    }
+
+    // ========== GERAR TEXTO DO ORÇAMENTO ==========
+    function gerarTextoOrcamento() {
+        let nome = document.getElementById("nome_cliente").value;
+        let endereco = document.getElementById("endereco_cliente").value;
+        let telefone = document.getElementById("telefone_cliente").value;
+        let email = document.getElementById("email_cliente").value;
+        let valorProdutos = document.getElementById("valor_produtos").value;
+        let frete = document.getElementById("frete").value;
+        let totalPrazo = document.getElementById("total_prazo").value;
+        let valorParcela = document.getElementById("valor_parcela").innerText;
+        let valorPix = document.getElementById("valor_pix").value;
+        let desconto = document.getElementById("desconto").innerText;
+        let mensagem = "📋 *Segue abaixo o orçamento solicitado:* 📦\n\n";
+        mensagem += "📝 *Ordem de Serviço*\n\n";
+        mensagem += "👤 *Cliente:*\n";
+        mensagem += "👤 " + (nome || "---") + "\n";
+        mensagem += "🏠 " + (endereco || "---") + "\n";
+        mensagem += "📱 " + (telefone || "---") + "\n";
+        mensagem += "📧 " + (email || "---") + "\n\n";
+        mensagem += "🛍️ *Produtos:*\n";
+        for (let p of listaProdutos) {
+            mensagem += `📦 ${p.nome} - Qtd: ${p.quantidade} - Unit: ${p.valorUnitario.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} - Subtotal: ${p.valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}\n`;
+        }
+        mensagem += "\n💰 *Detalhes Financeiros:*\n";
+        mensagem += "💵 Valor dos Produtos: " + valorProdutos + "\n";
+        mensagem += "🚚 Frete: " + (frete || "R$ 0,00") + "\n";
+        mensagem += "💳 Total à prazo: " + totalPrazo + "\n";
+        mensagem += "💳 (em até 8x de " + valorParcela + " sem juros)\n";
+        mensagem += "💸 Valor à vista no Pix: " + valorPix + "\n";
+        mensagem += "💸 (Economize: " + desconto + ")\n\n";
+        mensagem += "⏰ *Validade:* Este orçamento é válido por 7 dias.\n\n";
+        mensagem += "📞 Entre em contato para mais informações ou para realizar o pedido!";
+        return mensagem;
+    }
+
+    function atualizarTextarea() {
+        document.getElementById("texto_formatado").value = gerarTextoOrcamento();
+    }
+
+    function copiarTexto() {
+        let texto = gerarTextoOrcamento();
+        navigator.clipboard.writeText(texto).then(() => alert("✅ Orçamento copiado!")).catch(() => alert("Erro ao copiar."));
+        document.getElementById("texto_formatado").value = texto;
+    }
+
+    function enviarWhatsApp() {
+        let mensagem = gerarTextoOrcamento();
+        let numeroWhatsApp = "5511999999999"; // Substitua pelo número desejado
+        window.open("https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(mensagem));
+    }
+
+    // ========== EVENTOS DE SINCRONIZAÇÃO ==========
+    function bindEventosAtualizacao() {
+        let inputs = ["nome_cliente", "endereco_cliente", "telefone_cliente", "email_cliente", "frete"];
+        inputs.forEach(id => {
+            let el = document.getElementById(id);
+            if (el) el.addEventListener("input", () => { calcularTotalGeral(); atualizarTextarea(); });
+        });
+    }
+
+    function bindEventosMateriais() {
+        const preco26Input = document.getElementById("preco_kg_26");
+        const preco28Input = document.getElementById("preco_kg_28");
+        if (preco26Input) preco26Input.addEventListener("input", () => atualizarResumoMaterial());
+        if (preco28Input) preco28Input.addEventListener("input", () => atualizarResumoMaterial());
+    }
+
+    // ========== INICIALIZAÇÃO ==========
+    function init() {
+        popularSelectRufo();
+        gerarTabelaReferencia();
+        listaProdutos = [];
+        atualizarTabelaUnificada();
+        calcularTotalGeral();
+        atualizarResumoMaterial();
+        bindEventosAtualizacao();
+        bindEventosMateriais();
+        atualizarTextarea();
+    }
+
+    init();
 </script>
-
 </body>
 </html>
-
